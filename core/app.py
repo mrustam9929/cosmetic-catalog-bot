@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.security import HTTPBasic
 from fastapi_pagination import add_pagination
 
+from api.bot.views import router as bot_router
 from core.config import settings
 from core.cors import CORSMiddleware
 
@@ -28,5 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 add_pagination(app)
+
+app.include_router(bot_router)
 
 security = HTTPBasic()
